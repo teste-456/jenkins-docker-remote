@@ -16,10 +16,6 @@ node {
                     sh  ''' echo 'hajsaks' '''                
         }
     }
-}
-
-node {
-
     stage("Deploy Prod"){
         withEnv(["DOCKER_HOST=${staging_docker_host}"]) {
             sshagent( credentials: ['jenkins_docker']) {
@@ -27,4 +23,5 @@ node {
             }
         }
     }
+
 }

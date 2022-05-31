@@ -3,7 +3,7 @@ final String prod_docker_host = "ssh://root@167.235.76.166"
 
 node {
     stage("Pull") {
-        sh "docker pull -t nginx:latest"
+        sh "docker pull nginx:latest"
     }
 }
 

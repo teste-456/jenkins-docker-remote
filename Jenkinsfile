@@ -9,10 +9,8 @@ node {
 
 node {
     stage("Deploy Prod"){
-        withEnv(["DOCKER_HOST=${staging_docker_host}"]) {
-            sshagent( credentials: ['jenkins_docker']) {
-                sh "docker -H ${prod_docker_host} run -d -p 80:80 nginx:latest"
-            }
+        sshagent( credentials: ['jenkins_docker']) {
+            sh "docker -H ${prod_docker_host} run -d -p 80:80 nginx:latest"
         }
     }
 }

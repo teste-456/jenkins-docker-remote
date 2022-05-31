@@ -5,9 +5,21 @@ node {
     stage("Pull") {
         sh "docker pull  nginx:latest"
     }
+
+    stage('Sock') {
+        agent {
+            dockerfile {
+                args '-u root:root -v /var/run/docker.sock:/var/run/docker.sock'
+            }
+        }
+        steps {
+                    sh  ''' echo 'hajsaks' '''                
+        }
+    }
 }
 
 node {
+
     stage("Deploy Prod"){
         withEnv(["DOCKER_HOST=${staging_docker_host}"]) {
             sshagent( credentials: ['jenkins_docker']) {

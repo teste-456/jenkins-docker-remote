@@ -7,9 +7,6 @@ node {
     }
 }
 
-stage("Staging Deploy Approval") {
-    input "Deploy to Staging?"
-}
 
 node {
     stage("Deploy Stagin"){
@@ -21,9 +18,6 @@ node {
     }
 }
 
-stage("Production Deploy Approval") {
-    input "Deploy to Prod?"
-}
 
 node {
     stage("Deploy Prod"){

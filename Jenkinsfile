@@ -6,7 +6,7 @@ node {
         sh "docker pull nginx:latest"
     }
 
-    stage("Deploy Prod"){
+    stage("Deploy Prod "){
         sh "ssh -i /root/teste root@167.235.76.166"
  
         sh "docker -H ${prod_docker_host} run -d -p 80:80 nginx:latest"

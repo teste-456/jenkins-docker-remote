@@ -6,21 +6,9 @@ node {
         sh "docker pull nginx:latest"
     }
 
-    stage('Sock') {
-        agent {
-            dockerfile {
-                args '-u root:root -v /var/run/docker.sock:/var/run/docker.sock'
-            }
-        }
-        steps {
-                    sh  ''' echo 'hajsaks' '''                
-        }
-    }
     stage("Deploy Prod"){
-        withEnv(["DOCKER_HOST=${staging_docker_host}"]) {
-            sshagent( credentials: ['teste']) {
-                sh "docker -H ${prod_docker_host} run -d -p 80:80 nginx:latest"
-            }
+        sshagent( credentials: ['teste']) {
+            sh "docker -H ${prod_docker_host} run -d -p 80:80 nginx:latest"
         }
     }
 

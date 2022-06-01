@@ -7,9 +7,11 @@ node {
     }
 
     stage("Deploy Prod "){
-        sh "ssh -i /root/teste root@167.235.76.166"
- 
-        sh "docker -H ${prod_docker_host} run -d -p 80:80 nginx:latest"
+      withEnv(["DOCKER_HOST=${staging_docker_host}"]) {
+            sshagent( credentials: ['teste']) {
+                sh "docker -H ${prod_docker_host} run -d -p 80:80 nginx:latest"
+            }
+        } 
     }
 
 }

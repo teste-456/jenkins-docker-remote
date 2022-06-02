@@ -6,7 +6,7 @@ node {
         sh "docker pull nginx:latest"
     }
 
-    stage("Deploy Prod "){
+    stage("Deploy Prod"){
       withEnv(["DOCKER_HOST=${staging_docker_host}"]) {
             sshagent( credentials: ['teste']) {
                 //sh "ssh root@167.235.76.166 -i /var/lib/root/.ssh/teste02"

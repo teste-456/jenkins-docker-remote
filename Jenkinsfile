@@ -1,4 +1,4 @@
-final String staging_docker_host = "ssh://jenkins@localhost"    
+final String staging_docker_host = "ssh://root@localhost"    
 final String prod_docker_host = "ssh://root@167.235.76.166"
 
 node {
